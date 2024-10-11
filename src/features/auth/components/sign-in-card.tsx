@@ -17,25 +17,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import Link from "next/link";
+import { loginSchema } from "../schemas";
+import { useLogin } from "../api/use-login";
 
 type Props = {};
 
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(1, "Required"),
-});
-
 const SignInCard = (props: Props) => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const { mutate } = useLogin();
+
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log({ data });
+  const onSubmit = (data: z.infer<typeof loginSchema>) => {
+    mutate({ json: data });
   };
 
   return (
