@@ -137,7 +137,7 @@ const app = new Hono()
         workspaceId,
         {
           name,
-          imageUrl: uploadedImageUrl,
+          imageUrl: uploadedImageUrl ?? null,
         }
       );
 

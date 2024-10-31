@@ -40,7 +40,6 @@ export const EditWorkspaceForm = ({
   const { mutate, isPending } = useUpdateWorkspace();
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-  console.log("initialValue", initialValue);
 
   const form = useForm<z.infer<typeof updateWorkspaceSchema>>({
     resolver: zodResolver(updateWorkspaceSchema),
@@ -55,6 +54,8 @@ export const EditWorkspaceForm = ({
       ...values,
       image: values.image instanceof File ? values.image : "",
     };
+
+    console.log(finalValues, "finalValues");
 
     mutate(
       { form: finalValues, param: { workspaceId: initialValue.$id } },
@@ -150,16 +151,34 @@ export const EditWorkspaceForm = ({
                           onChange={handleImageChange}
                           disabled={isPending}
                         />
-                        <Button
-                          type="button"
-                          disabled={isPending}
-                          variant={"tertiary"}
-                          size={"xs"}
-                          className="w-fit mt-2"
-                          onClick={() => inputRef.current?.click()}
-                        >
-                          Upload Image
-                        </Button>
+                        {field.value ? (
+                          <Button
+                            type="button"
+                            disabled={isPending}
+                            variant={"destructive"}
+                            size={"xs"}
+                            className="w-fit mt-2"
+                            onClick={() => {
+                              field.onChange("");
+                              if (inputRef.current) {
+                                inputRef.current.value = "";
+                              }
+                            }}
+                          >
+                            Remove Button
+                          </Button>
+                        ) : (
+                          <Button
+                            type="button"
+                            disabled={isPending}
+                            variant={"tertiary"}
+                            size={"xs"}
+                            className="w-fit mt-2"
+                            onClick={() => inputRef.current?.click()}
+                          >
+                            Upload Image
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>
