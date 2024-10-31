@@ -13,7 +13,6 @@ export const getWorkspaces = async () => {
 
     const session = cookies().get(AUTH_COOKIE);
     if (!session) return { documents: [], total: 0 };
-    console.log(`session`, session);
 
     client.setSession(session.value);
     const databases = new Databases(client);
@@ -54,7 +53,6 @@ export const getWorkspace = async ({ workspaceId }: GetWorkspaceProps) => {
 
     const session = cookies().get(AUTH_COOKIE);
     if (!session) return null;
-    console.log(`session`, session);
 
     client.setSession(session.value);
     const databases = new Databases(client);
