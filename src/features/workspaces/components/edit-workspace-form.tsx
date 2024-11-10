@@ -93,18 +93,11 @@ export const EditWorkspaceForm = ({
     const ok = await confirmReset();
     if (!ok) return;
 
-    resetInviteCode(
-      {
-        param: {
-          workspaceId: initialValue.$id,
-        },
+    resetInviteCode({
+      param: {
+        workspaceId: initialValue.$id,
       },
-      {
-        onSuccess: () => {
-          router.refresh();
-        },
-      }
-    );
+    });
   };
 
   const onSubmit = (values: z.infer<typeof updateWorkspaceSchema>) => {
@@ -116,9 +109,8 @@ export const EditWorkspaceForm = ({
     mutate(
       { form: finalValues, param: { workspaceId: initialValue.$id } },
       {
-        onSuccess: ({ data }) => {
+        onSuccess: () => {
           form.reset();
-          router.push(`/workspaces/${data.$id}`);
         },
       }
     );
