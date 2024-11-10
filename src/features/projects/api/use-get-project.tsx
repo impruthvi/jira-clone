@@ -8,7 +8,7 @@ interface UseGetProjectsProps {
 
 export const useGetProjects = ({ workspaceId }: UseGetProjectsProps) => {
   const query = useQuery({
-    queryKey: ["projects"],
+    queryKey: ["projects", workspaceId],
     queryFn: async () => {
       const response = await client.api.projects.$get({
         query: { workspaceId },
