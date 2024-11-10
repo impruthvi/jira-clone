@@ -28,6 +28,8 @@ import { cn } from "@/lib/utils";
 import { Project } from "../types";
 import { useUpdateProject } from "../api/use-update-project";
 import { toast } from "sonner";
+import { useConfirm } from "@/hooks/use-confirm";
+import { useDeleteProject } from "../api/use-delete-project";
 
 interface EditProjectFormProps {
   onCancel?: () => void;
@@ -39,9 +41,15 @@ export const EditProjectForm = ({
   initialValue,
 }: EditProjectFormProps) => {
   const { mutate, isPending } = useUpdateProject();
-
+  const { mutate: deleteProject, isPending: isDeletingProject } =
+    useDeleteProject();
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const [DeleteDialog, confirmDelete] = useConfirm(
+    "Delete Project",
+    "This action can not be undone.",
+    "destructive"
+  );
 
   const form = useForm<z.infer<typeof updateProjectSchema>>({
     resolver: zodResolver(updateProjectSchema),
@@ -74,8 +82,27 @@ export const EditProjectForm = ({
     }
   };
 
+  const handleDelete = async () => {
+    const ok = await confirmDelete();
+    if (!ok) return;
+
+    deleteProject(
+      {
+        param: {
+          projectId: initialValue.$id,
+        },
+      },
+      {
+        onSuccess: () => {
+          window.location.href = `/workspaces/${initialValue.workspaceId}`;
+        },
+      }
+    );
+  };
+
   return (
     <div className="flex flex-col gap-4">
+      <DeleteDialog />
       <Card className="w-full h-full border-none shadow-none">
         <CardHeader className="flex flex-row items-center gap-x-4 p-7 space-7-0">
           <Button
@@ -225,8 +252,8 @@ export const EditProjectForm = ({
               size={"sm"}
               variant={"destructive"}
               type="button"
-              disabled={false}
-              onClick={() => {}}
+              disabled={isDeletingProject}
+              onClick={handleDelete}
             >
               Delete Project
             </Button>
