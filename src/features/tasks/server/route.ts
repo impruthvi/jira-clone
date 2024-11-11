@@ -66,7 +66,7 @@ const app = new Hono()
       }
 
       if (search) {
-        query.push(Query.equal("search", search));
+        query.push(Query.search("name", search));
       }
 
       const tasks = await databases.listDocuments(DATABASE_ID, TASKS_ID, query);
