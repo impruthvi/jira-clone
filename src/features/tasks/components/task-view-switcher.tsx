@@ -9,7 +9,11 @@ import { Button } from "@/components/ui/button";
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import { columns } from "./columns";
+import { DataTable } from "./data-table";
+
 import { DataFilters } from "./data-filters";
+
 import { useGetTasks } from "../api/use-get-task";
 import { useCreateTaskModal } from "../hooks/use-create-task-modal";
 import { useTaskFilters } from "../hooks/use-task-filters";
@@ -63,7 +67,7 @@ export const TaskViewSwitcher = () => {
         ) : (
           <>
             <TabsContent className="mt-0" value="table">
-              {JSON.stringify(tasks)}
+              <DataTable columns={columns} data={tasks?.documents ?? []} />
             </TabsContent>
             <TabsContent className="mt-0" value="kanban">
               {JSON.stringify(tasks)}
