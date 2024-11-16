@@ -15,10 +15,13 @@ import { DataTable } from "./data-table";
 import { DataKanBan } from "./data-kanban";
 import { DataFilters } from "./data-filters";
 
-import { useGetTasks } from "../api/use-get-tasks";
-import { useCreateTaskModal } from "../hooks/use-create-task-modal";
-import { useTaskFilters } from "../hooks/use-task-filters";
 import { TaskStatus } from "../types";
+
+import { useGetTasks } from "../api/use-get-tasks";
+import { useBulkUpdateTask } from "../api/use-bulk-update-task ";
+
+import { useTaskFilters } from "../hooks/use-task-filters";
+import { useCreateTaskModal } from "../hooks/use-create-task-modal";
 
 export const TaskViewSwitcher = () => {
   const [{ status, assigneeId, projectId, dueDate }] = useTaskFilters();
@@ -32,12 +35,13 @@ export const TaskViewSwitcher = () => {
     dueDate,
   });
   const { open } = useCreateTaskModal();
+  const { mutate: bulkUpdate } = useBulkUpdateTask();
 
   const onKanbanChange = useCallback(
     (tasks: { $id: string; status: TaskStatus; position: number }[]) => {
-      console.log("tasks", tasks);
+      bulkUpdate({ json: { tasks } });
     },
-    []
+    [bulkUpdate]
   );
 
   return (
