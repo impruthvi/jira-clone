@@ -11,6 +11,7 @@ import { snakeCaseToTitleCase } from "@/lib/utils";
 import { TaskStatus } from "../types";
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { useCreateTaskModal } from "../hooks/use-create-task-modal";
 
 interface KanbanColumnHeaderProps {
   board: TaskStatus;
@@ -33,6 +34,8 @@ export const KanbanColumnHeader = ({
   board,
   taskCount,
 }: KanbanColumnHeaderProps) => {
+  const { open } = useCreateTaskModal();
+
   const icon = statusIconMap[board];
   return (
     <div className="px-2 py-1.5 flex items-center justify-between">
@@ -44,7 +47,7 @@ export const KanbanColumnHeader = ({
         </div>
       </div>
       <Button
-        onClick={() => {}}
+        onClick={() => open(board)}
         variant={"ghost"}
         size={"icon"}
         className="size-5"
