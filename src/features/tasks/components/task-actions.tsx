@@ -19,6 +19,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useEditTaskModal } from "../hooks/use-edit-task-modal";
 
 interface TaskActionsProps {
   id: string;
@@ -29,6 +30,8 @@ interface TaskActionsProps {
 export const TaskActions = ({ id, children, projectId }: TaskActionsProps) => {
   const workspaceId = useWorkspaceId();
   const router = useRouter();
+
+  const { open } = useEditTaskModal();
 
   const [ConfirmDialog, confirm] = useConfirm(
     "Delete task",
@@ -74,7 +77,10 @@ export const TaskActions = ({ id, children, projectId }: TaskActionsProps) => {
             <ExternalLinkIcon className="size-4 mr-2 stroke-2" />
             Open Project
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => {}} className="font-medium p-[10px]">
+          <DropdownMenuItem
+            onClick={() => open(id)}
+            className="font-medium p-[10px]"
+          >
             <PencilIcon className="size-4 mr-2 stroke-2" />
             Edit Task
           </DropdownMenuItem>
