@@ -8,6 +8,7 @@ import {
 } from "@hello-pangea/dnd";
 
 import { Task, TaskStatus } from "../types";
+import { KanbanCard } from "./kanban-card";
 import { KanbanColumnHeader } from "./kanban-column-header";
 
 const boards: TaskStatus[] = [
@@ -60,6 +61,35 @@ export const DataKanBan = ({ data }: DataKanbanProps) => {
                 board={board}
                 taskCount={tasks[board].length}
               />
+              <Droppable droppableId={board}>
+                {(provided) => (
+                  <div
+                    className="min-h-[200px] py-1.5"
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                  >
+                    {tasks[board].map((task, index) => (
+                      <Draggable
+                        key={task.$id}
+                        draggableId={task.$id}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <div
+                            className=""
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            ref={provided.innerRef}
+                          >
+                            <KanbanCard task={task} />
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
             </div>
           );
         })}
