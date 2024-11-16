@@ -14,7 +14,7 @@ import { DataTable } from "./data-table";
 
 import { DataFilters } from "./data-filters";
 
-import { useGetTasks } from "../api/use-get-task";
+import { useGetTasks } from "../api/use-get-tasks";
 import { useCreateTaskModal } from "../hooks/use-create-task-modal";
 import { useTaskFilters } from "../hooks/use-task-filters";
 
