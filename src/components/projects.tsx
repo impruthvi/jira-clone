@@ -30,8 +30,9 @@ const Projects = () => {
       </div>
 
       {data?.documents.map((project) => {
-        const href = `/workspaces/${workspaceId}/projects/${project.$id}`;
+        let href = `/workspaces/${workspaceId}/projects/${project.$id}`;
         const isActive = pathname === href;
+        href = `${href}?projectId=${project.$id}`;
         return (
           <Link href={href} key={project.$id}>
             <div
