@@ -3,7 +3,7 @@
 import { FolderIcon, ListCheckIcon, UserIcon } from "lucide-react";
 
 import { useGetMembers } from "@/features/members/api/use-get-member";
-import { useGetProjects } from "@/features/projects/api/use-get-project";
+import { useGetProjects } from "@/features/projects/api/use-get-projects";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
 import { TaskStatus } from "../types";
