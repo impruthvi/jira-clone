@@ -65,14 +65,7 @@ export const EditProjectForm = ({
       image: values.image instanceof File ? values.image : "",
     };
 
-    mutate(
-      { form: finalValues, param: { projectId: initialValue.$id } },
-      {
-        onSuccess: () => {
-          form.reset();
-        },
-      }
-    );
+    mutate({ form: finalValues, param: { projectId: initialValue.$id } });
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
