@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jira Clone
+
+Welcome to the Jira Clone project! This project aims to replicate the core functionalities of Jira, a popular project management tool. Our Jira Clone provides an intuitive interface and powerful features to help you manage your projects efficiently.
+
+## Features
+
+- **User Authentication**: Secure user registration and login system.
+- **Project Management**: Create, update, and delete projects.
+- **Issue Tracking**: Create, assign, and track issues within projects.
+- **Kanban Board**: Visualize your workflow with a drag-and-drop Kanban board.
+- **Search and Filter**: Easily find issues with advanced search and filtering options.
+- **Comments**: Collaborate with team members by adding comments to issues.
+- **User Roles and Permissions**: Manage user roles and permissions for better control.
+- **Calendar**: Schedule and manage project deadlines and milestones with a calendar view.
+
+## Key Features
+
+- **🏢 Workspaces**: Organize your projects into workspaces for better management.
+- **📊 Projects / Epics**: Create and manage projects and epics to structure your work.
+- **✅ Tasks**: Track tasks and their progress within projects.
+- **📋 Kanban Board View**: Visualize tasks with a drag-and-drop Kanban board.
+- **🗃️ Data Table View**: View and manage tasks in a data table format.
+- **📅 Calendar View**: Schedule and track tasks with a calendar view.
+- **✉️ Invite System**: Invite team members to collaborate on projects.
+- **⚙️ Workspace and Project Settings**: Customize settings for workspaces and projects.
+- **🖼️ Image Uploads**: Upload images for avatars and attachments.
+- **🔌 Appwrite SDK Integration**: Integrate with Appwrite SDK for backend services.
+- **⚛️ Next.js 14 Framework**: Built with the latest Next.js 14 framework.
+- **🎨 Shadcn UI & TailwindCSS Styling**: Styled with Shadcn UI and TailwindCSS.
+- **🔍 Advanced Search and Filtering**: Use advanced search and filtering options.
+- **📈 Analytics Dashboard**: View project analytics with a dashboard.
+- **👥 User Roles and Permissions**: Manage user roles and permissions.
+- **🔒 Authentication**: Supports OAuth and Email authentication.
+- **📱 Responsive Design**: Mobile-friendly responsive design.
+- **🚀 API using Hono.js**: Backend API built with Hono.js.
 
 ## Getting Started
 
-First, run the development server:
+To get started with the Jira Clone project, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/impruthvi/jira-clone.git
+    ```
+2. **Install dependencies**:
+    ```bash
+    cd jira-clone
+    npm install
+    ```
+3. **Rename the environment file**:
+    ```bash
+    cp .env.example .env.local
+    ```
+4. **Start the development server**:
+    ```bash
+    npm start
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We welcome contributions from the community! If you would like to contribute, please follow these steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes and commit them (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contact
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+If you have any questions or feedback, feel free to reach out to us at [pruthvirajput97@gmail.com](mailto:pruthvirajput97@gmail.com).
 
-## Deploy on Vercel
+## Join Us
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+I invite other developers to join us in improving this project. Your contributions and ideas are welcome!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Happy coding!
