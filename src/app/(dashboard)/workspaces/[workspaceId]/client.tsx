@@ -8,6 +8,7 @@ import { Task } from "@/features/tasks/types";
 import { useGetTasks } from "@/features/tasks/api/use-get-tasks";
 import { useGetMembers } from "@/features/members/api/use-get-member";
 import { useGetProjects } from "@/features/projects/api/use-get-projects";
+import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { useCreateTaskModal } from "@/features/tasks/hooks/use-create-task-modal";
 import { useCreateProjectModal } from "@/features/projects/hooks/use-create-project-modal";
@@ -15,6 +16,7 @@ import { useGetWorkspaceAnalytics } from "@/features/workspaces/api/use-get-work
 
 import Analytics from "@/components/analytics";
 import { Button } from "@/components/ui/button";
+import { Project } from "@/features/projects/types";
 import { PageError } from "@/components/page-error";
 import { PageLoader } from "@/components/page-loader";
 import { Card, CardContent } from "@/components/ui/card";
@@ -58,6 +60,7 @@ export const WorkspaceIdClient = () => {
       <Analytics data={analytics} />
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <TaskList tasks={tasks.documents} total={tasks.total} />
+        <ProjectList projects={projects.documents} total={projects.total} />
       </div>
     </div>
   );
@@ -110,6 +113,53 @@ export const TaskList = ({ tasks, total }: TaskListProps) => {
         <Button variant={"muted"} className="mt-4 w-full" asChild>
           <Link href={`workspaces/${workspaceId}/tasks`}>Show All</Link>
         </Button>
+      </div>
+    </div>
+  );
+};
+
+interface ProjectListProps {
+  projects: Project[];
+  total: number;
+}
+
+export const ProjectList = ({ projects, total }: ProjectListProps) => {
+  const workspaceId = useWorkspaceId();
+  const { open: createProject } = useCreateProjectModal();
+  return (
+    <div className="flex flex-col gap-y-4 col-span-1">
+      <div className="bg-white border rounded-lg p-4">
+        <div className="flex items-center justify-between">
+          <p className="text-lg font-semibold">Projects ({total})</p>
+          <Button variant={"secondary"} size={"icon"} onClick={createProject}>
+            <PlusIcon className="size-4 text-neutral-400" />
+          </Button>
+        </div>
+        <DottedSeparator className="my-4" />
+        <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {projects.map((project) => (
+            <li key={project.$id}>
+              <Link href={`/workspaces/${workspaceId}/projects/${project.$id}`}>
+                <Card className="shadow-none rounded-lg hover:opacity-75 transition">
+                  <CardContent className="p-4 flex items-center gap-x-2.5">
+                    <ProjectAvatar
+                      className="size-12"
+                      fallbackClassName="text-lg"
+                      name={project.name}
+                      image={project.imageUrl}
+                    />
+                    <p className="text-lg font-medium truncate">
+                      {project.name}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            </li>
+          ))}
+          <li className="text-sm text-muted-foreground text-center hidden first-of-type:block">
+            No Projects Fount
+          </li>
+        </ul>
       </div>
     </div>
   );
