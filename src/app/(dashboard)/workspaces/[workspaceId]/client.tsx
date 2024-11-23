@@ -111,7 +111,7 @@ export const TaskList = ({ tasks, total }: TaskListProps) => {
           </li>
         </ul>
         <Button variant={"muted"} className="mt-4 w-full" asChild>
-          <Link href={`workspaces/${workspaceId}/tasks`}>Show All</Link>
+          <Link href={`/workspaces/${workspaceId}/tasks`}>Show All</Link>
         </Button>
       </div>
     </div>
@@ -126,6 +126,7 @@ interface ProjectListProps {
 export const ProjectList = ({ projects, total }: ProjectListProps) => {
   const workspaceId = useWorkspaceId();
   const { open: createProject } = useCreateProjectModal();
+
   return (
     <div className="flex flex-col gap-y-4 col-span-1">
       <div className="bg-white border rounded-lg p-4">
@@ -136,30 +137,35 @@ export const ProjectList = ({ projects, total }: ProjectListProps) => {
           </Button>
         </div>
         <DottedSeparator className="my-4" />
-        <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {projects.map((project) => (
-            <li key={project.$id}>
-              <Link href={`/workspaces/${workspaceId}/projects/${project.$id}`}>
-                <Card className="shadow-none rounded-lg hover:opacity-75 transition">
-                  <CardContent className="p-4 flex items-center gap-x-2.5">
-                    <ProjectAvatar
-                      className="size-12"
-                      fallbackClassName="text-lg"
-                      name={project.name}
-                      image={project.imageUrl}
-                    />
-                    <p className="text-lg font-medium truncate">
-                      {project.name}
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-            </li>
-          ))}
-          <li className="text-sm text-muted-foreground text-center hidden first-of-type:block">
-            No Projects Fount
-          </li>
-        </ul>
+        {projects.length > 0 ? (
+          <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {projects.map((project) => (
+              <li key={project.$id}>
+                <Link
+                  href={`/workspaces/${workspaceId}/projects/${project.$id}`}
+                >
+                  <Card className="shadow-none rounded-lg hover:opacity-75 transition">
+                    <CardContent className="p-4 flex items-center gap-x-2.5">
+                      <ProjectAvatar
+                        className="size-12"
+                        fallbackClassName="text-lg"
+                        name={project.name}
+                        image={project.imageUrl}
+                      />
+                      <p className="text-lg font-medium truncate">
+                        {project.name}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-sm text-muted-foreground text-center">
+            No Projects Found
+          </p>
+        )}
       </div>
     </div>
   );
