@@ -3,9 +3,7 @@ import SignUpCard from "@/features/auth/components/sign-up-card";
 import { redirect } from "next/navigation";
 import React from "react";
 
-type Props = {};
-
-const SignUpPage = async (props: Props) => {
+const SignUpPage = async () => {
   const user = await getCurrent();
 
   if (user) return redirect("/");

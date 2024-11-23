@@ -2,7 +2,6 @@
 
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { MemberAvatar } from "@/features/members/components/member-avatar";
@@ -53,7 +52,6 @@ export const CreateTaskForm = ({
 
   const workspaceId = useWorkspaceId();
   const { mutate, isPending } = useCreateTask();
-  const router = useRouter();
 
   const form = useForm<z.infer<typeof createTaskSchema>>({
     resolver: zodResolver(createTaskSchema.omit({ workspaceId: true })),

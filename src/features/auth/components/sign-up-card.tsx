@@ -30,9 +30,7 @@ import Link from "next/link";
 import { registerSchema } from "../schemas";
 import { useRegister } from "../api/use-register";
 
-type Props = {};
-
-const SignUpCard = (props: Props) => {
+const SignUpCard = () => {
   const { mutate, isPending } = useRegister();
 
   const form = useForm<z.infer<typeof registerSchema>>({

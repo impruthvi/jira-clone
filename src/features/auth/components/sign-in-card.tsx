@@ -22,10 +22,8 @@ import Link from "next/link";
 import { loginSchema } from "../schemas";
 import { useLogin } from "../api/use-login";
 
-type Props = {};
-
-const SignInCard = (props: Props) => {
-  const { mutate , isPending } = useLogin();
+const SignInCard = () => {
+  const { mutate, isPending } = useLogin();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),

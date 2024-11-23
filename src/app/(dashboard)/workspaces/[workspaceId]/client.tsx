@@ -47,9 +47,6 @@ export const WorkspaceIdClient = () => {
     isLoadingProjects ||
     isLoadingMembers;
 
-  const { open: createTask } = useCreateTaskModal();
-  const { open: createProject } = useCreateProjectModal();
-
   if (isLoading) {
     return <PageLoader />;
   }

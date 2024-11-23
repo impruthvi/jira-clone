@@ -1,10 +1,4 @@
-import {
-  CircleCheckIcon,
-  CircleDashedIcon,
-  CircleDotDashedIcon,
-  CircleIcon,
-  PlusIcon,
-} from "lucide-react";
+import { CircleDashedIcon, CircleIcon, PlusIcon } from "lucide-react";
 
 import { snakeCaseToTitleCase } from "@/lib/utils";
 
