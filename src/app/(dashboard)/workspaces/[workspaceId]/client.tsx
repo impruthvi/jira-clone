@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
-import { CalendarIcon, PlusIcon } from "lucide-react";
+import { CalendarIcon, PlusIcon, SettingsIcon } from "lucide-react";
 
 import { Task } from "@/features/tasks/types";
+import { Member } from "@/features/members/types";
 import { useGetTasks } from "@/features/tasks/api/use-get-tasks";
 import { useGetMembers } from "@/features/members/api/use-get-member";
 import { useGetProjects } from "@/features/projects/api/use-get-projects";
+import { MemberAvatar } from "@/features/members/components/member-avatar";
 import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { useCreateTaskModal } from "@/features/tasks/hooks/use-create-task-modal";
@@ -61,6 +63,7 @@ export const WorkspaceIdClient = () => {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <TaskList tasks={tasks.documents} total={tasks.total} />
         <ProjectList projects={projects.documents} total={projects.total} />
+        <MemberList members={members.documents} total={members.total} />
       </div>
     </div>
   );
@@ -158,6 +161,52 @@ export const ProjectList = ({ projects, total }: ProjectListProps) => {
           ))}
           <li className="text-sm text-muted-foreground text-center hidden first-of-type:block">
             No Projects Fount
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+interface MemberListProps {
+  members: Member[];
+  total: number;
+}
+
+export const MemberList = ({ members, total }: MemberListProps) => {
+  const workspaceId = useWorkspaceId();
+  return (
+    <div className="flex flex-col gap-y-4 col-span-1">
+      <div className="bg-white border rounded-lg p-4">
+        <div className="flex items-center justify-between">
+          <p className="text-lg font-semibold">Members ({total})</p>
+          <Button variant={"secondary"} size={"icon"} asChild>
+            <Link href={`/workspaces/${workspaceId}/members`}>
+              <SettingsIcon className="size-4 text-neutral-400" />
+            </Link>
+          </Button>
+        </div>
+        <DottedSeparator className="my-4" />
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {members.map((member) => (
+            <li key={member.$id}>
+              <Card className="shadow-none rounded-lg overflow-hidden">
+                <CardContent className="p-3 flex flex-col items-center gap-x-2">
+                  <MemberAvatar className="size-12" name={member.name} />
+                  <div className="flex flex-col items-center overflow-auto">
+                    <p className="text-lg font-medium line-clamp-1">
+                      {member.name}
+                    </p>
+                    <p className="text-lg text-muted-foreground line-clamp-1">
+                      {member.email}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </li>
+          ))}
+          <li className="text-sm text-muted-foreground text-center hidden first-of-type:block">
+            No Members Fount
           </li>
         </ul>
       </div>
