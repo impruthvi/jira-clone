@@ -194,7 +194,7 @@ export const MemberList = ({ members, total }: MemberListProps) => {
                     <p className="text-lg font-medium line-clamp-1">
                       {member.name}
                     </p>
-                    <p className="text-lg text-muted-foreground line-clamp-1">
+                    <p className="text-sm text-muted-foreground line-clamp-1">
                       {member.email}
                     </p>
                   </div>

@@ -1,16 +1,18 @@
 "use client";
 
 import { z } from "zod";
+import Link from "next/link";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { DottedSeparator } from "@/components/dotted-separator";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { DottedSeparator } from "@/components/dotted-separator";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -18,7 +20,9 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import Link from "next/link";
+
+import { signUpWithGithub, signUpWithGoogle } from "@/lib/oauth";
+
 import { loginSchema } from "../schemas";
 import { useLogin } from "../api/use-login";
 
@@ -96,6 +100,7 @@ const SignInCard = () => {
           variant={"secondary"}
           size={"lg"}
           className="w-full"
+          onClick={() => signUpWithGoogle()}
         >
           <FcGoogle className="mr-2 size-5" />
           Login with Google
@@ -105,6 +110,7 @@ const SignInCard = () => {
           variant={"secondary"}
           size={"lg"}
           className="w-full"
+          onClick={() => signUpWithGithub()}
         >
           <FaGithub className="mr-2 size-5" />
           Login with Github
