@@ -1,6 +1,6 @@
-# Jira Clone
+# Taskify
 
-Welcome to the Jira Clone project! This project aims to replicate the core functionalities of Jira, a popular project management tool. Our Jira Clone provides an intuitive interface and powerful features to help you manage your projects efficiently.
+Welcome to the Taskify project! This project aims to replicate the core functionalities of Jira, a popular project management tool. Our Taskify provides an intuitive interface and powerful features to help you manage your projects efficiently.
 
 ## Features
 
@@ -36,7 +36,7 @@ Welcome to the Jira Clone project! This project aims to replicate the core funct
 
 ## Getting Started
 
-To get started with the Jira Clone project, follow these steps:
+To get started with the Taskify project, follow these steps:
 
 1. **Clone the repository**:
     ```bash
