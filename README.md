@@ -40,11 +40,11 @@ To get started with the Taskify project, follow these steps:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/impruthvi/jira-clone.git
+    git clone https://github.com/impruthvi/taskify.git
     ```
 2. **Install dependencies**:
     ```bash
-    cd jira-clone
+    cd taskify
     npm install
     ```
 3. **Rename the environment file**:
