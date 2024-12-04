@@ -12,9 +12,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Jira Clone",
+  title: "Taskify",
   description:
-    "A clone of Jira, a popular project management tool, built with Next.js, React Query, and Tailwind CSS.",
+    "Taskify is a simple task management app that helps you stay organized and get things done.",
 };
 
 export default function RootLayout({
