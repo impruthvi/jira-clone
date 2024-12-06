@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from '@vercel/analytics/next';
 
 import { cn } from "@/lib/utils";
 import { QueryProviders } from "@/components/query-provider";
@@ -28,6 +29,7 @@ export default function RootLayout({
         <QueryProviders>
           <Toaster />
           {children}
+          <Analytics />
         </QueryProviders>
       </body>
     </html>
