@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { cn } from "@/lib/utils";
 import { QueryProviders } from "@/components/query-provider";
@@ -30,6 +31,7 @@ export default function RootLayout({
           <Toaster />
           {children}
           <Analytics />
+          <SpeedInsights />
         </QueryProviders>
       </body>
     </html>
